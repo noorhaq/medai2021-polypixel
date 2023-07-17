@@ -1,0 +1,36 @@
+name: Run medai2021-polypixel
+
+on:
+  push:
+    branches:
+      - main  # Change this to your branch name if necessary
+
+jobs:
+  run-notebook:
+    name: Run medai2021-polypixel
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x  # Specify the desired Python version
+
+      - name: Install Jupyter Notebook and dependencies
+        run: |
+          pip install jupyter nbconvert papermill
+
+      - name: Convert and run the notebook
+        run: |
+          jupyter nbconvert --execute --to notebook --inplace "Polyp Segmentation Task/hyperkvasir-polyp-cv.ipynb"
+          # Or use the following command with papermill to execute the notebook:
+          # papermill "Polyp Segmentation Task/hyperkvasir-polyp-cv.ipynb" executed_notebook.ipynb
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: notebook-output
+          path: "Polyp Segmentation Task/hyperkvasir-polyp-cv.ipynb"
