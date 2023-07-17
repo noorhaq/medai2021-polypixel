@@ -1,0 +1,14 @@
+opencv-python
+matplotlib
+numpy
+pandas
+scikit-image
+scipy
+seaborn
+SimpleITK
+torch
+keras
+tensorflow
+segmentation-models
+neptune-client
+scikit-learn
