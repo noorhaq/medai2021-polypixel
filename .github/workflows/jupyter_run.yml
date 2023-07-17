@@ -19,9 +19,16 @@ jobs:
         with:
           python-version: 3.x  # Specify the desired Python version
 
-      - name: Install Jupyter Notebook and dependencies
+      - name: Install Jupyter Notebook
         run: |
           pip install jupyter nbconvert papermill
+          
+      - name: Install notebook dependencies
+        run: |
+          pip install -r "Polyp Segmentation Task/requirements.txt"
+          # Or use the following command for conda environments with environment.yml file:
+          # conda env create -f "Polyp Segmentation Task/environment.yml"
+
 
       - name: Convert and run the notebook
         run: |
